@@ -9,6 +9,13 @@ RSpec.describe User, type: :model do
     expect(User.new).to respond_to(:password)
   end
 
+  it 'has many books' do
+    user = User.create(name: "testing", password: "testing!")
+    book_one = Book.create(user_id: user.id, title: "one")
+    book_two = Book.create(user_id: user.id, title: "two")
+    expect(user.books.length).to eq(2)
+  end
+
   describe 'authenticated with secure password' do
     it 'returns a User if the password is correct' do
       user = User.new

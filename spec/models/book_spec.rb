@@ -36,4 +36,10 @@ RSpec.describe Book, type: :model do
   it 'can be a favorite' do
     expect(Book.new).to respond_to(:favorite)
   end
+
+  it 'belongs to a user' do
+    user = User.create(name: "book owner", password: "owner!")
+    book = Book.create(user_id: user.id, title: "belonging")
+    expect(book.user.name).to eq("book owner")
+  end
 end
