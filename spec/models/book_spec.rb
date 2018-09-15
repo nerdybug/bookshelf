@@ -40,6 +40,6 @@ RSpec.describe Book, type: :model do
   it 'belongs to a user' do
     user = User.create(name: "book owner", password: "owner!")
     book = Book.create(user_id: user.id, title: "belonging")
-    expect(book.user.name).to eq("book owner")
+    expect(book.user.id).to eq(user.id)
   end
 end
