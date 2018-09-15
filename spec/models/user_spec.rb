@@ -11,8 +11,9 @@ RSpec.describe User, type: :model do
 
   it 'has many books' do
     user = User.create(name: "testing", password: "testing!")
-    book_one = Book.create(user_id: user.id, title: "one")
-    book_two = Book.create(user_id: user.id, title: "two")
+    author = Author.create(name: "test author")
+    book_one = Book.create(user_id: user.id, title: "one", author_id: author.id)
+    book_two = Book.create(user_id: user.id, title: "two", author_id: author.id)
     expect(user.books.length).to eq(2)
   end
 
