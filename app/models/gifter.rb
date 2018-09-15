@@ -1,0 +1,2 @@
+class Gifter < ApplicationRecord
+end
