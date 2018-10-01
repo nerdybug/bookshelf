@@ -19,4 +19,13 @@ RSpec.feature "Book management", :type => :feature do
         visit "/books/#{book.id}"
         expect(page).to have_content(book.title)
     end
+
+    scenario "A user edits one of their books" do
+        visit "/books/#{book.id}/edit"
+
+        fill_in "pub_year", :with => "1976"
+        click_button "Update"
+
+        expect(page).to have_content("1976")
+    end
 end
