@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Book management", :type => :feature do
+    user = User.create(name: "test_user", password: "testing123")
+    author = Author.create(name: "Anne Rice")
+    book = Book.create(user_id: user.id, title: "Interview with the Vampire", author_id: author.id)
+
     scenario "A user creates a book" do
         visit "/books/new"
 
@@ -9,5 +13,10 @@ RSpec.feature "Book management", :type => :feature do
         click_button "Add book"
 
         expect(page).to have_content("Interview with the Vampire")
+    end
+
+    scenario "A user views one of their books" do
+        visit "/books/#{book.id}"
+        expect(page).to have_content(book.title)
     end
 end
