@@ -19,6 +19,10 @@ RSpec.feature "User management", :type => :feature do
     end
 
     scenario "User edits their info" do
+        visit "users/#{user.id}/edit"
+        fill_in "name" :with => "best_user"
+        click_button "Update"
 
+        expect(page).to have_content("best_user")
     end
 end
