@@ -28,4 +28,9 @@ RSpec.feature "Book management", :type => :feature do
 
         expect(page).to have_content("1976")
     end
+
+    scenario "A user deletes one of their books" do
+        visit "/books/#{book.id}/delete"
+        expect(page).not_to have_content(book.title)
+    end
 end
