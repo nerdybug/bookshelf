@@ -25,4 +25,9 @@ RSpec.feature "User management", :type => :feature do
 
         expect(page).to have_content("best_user")
     end
+
+    scenario "User deletes their account" do
+        visit "users/#{user.id}/delete"
+        expect(page).to have_content("Welcome to bookshelf!")
+    end
 end
