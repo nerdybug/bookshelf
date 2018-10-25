@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_223850) do
+ActiveRecord::Schema.define(version: 2018_10_25_015058) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -22,24 +22,9 @@ ActiveRecord::Schema.define(version: 2018_09_15_223850) do
     t.string "title"
     t.integer "user_id"
     t.integer "author_id"
-    t.integer "occasion_id"
-    t.integer "gifter_id"
     t.integer "pub_year"
     t.string "note"
     t.boolean "favorite", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "gifters", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "occasions", force: :cascade do |t|
-    t.string "name"
-    t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
