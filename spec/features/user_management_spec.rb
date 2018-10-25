@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.feature "User management", :type => :feature do
     user = User.create(name: "test_user", password: "testing123")
 
-    scenario "Visitor sees the welcome page if not already logged in" do
+    scenario "Visitor sees the welcome page" do
+        visit root_url
+        expect(page).to have_content("Welcome to the Bookshelf")
     end
 
     scenario "Logging in creates a session" do
