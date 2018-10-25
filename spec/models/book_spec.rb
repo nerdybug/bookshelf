@@ -13,14 +13,6 @@ RSpec.describe Book, type: :model do
     expect(Book.new).to respond_to(:author_id)
   end
 
-  it 'has an occasion' do
-    expect(Book.new).to respond_to(:occasion_id)
-  end
-
-  it 'has a gifter' do
-    expect(Book.new).to respond_to(:gifter_id)
-  end
-
   it 'has a publication year' do
     expect(Book.new).to respond_to(:pub_year)
   end
