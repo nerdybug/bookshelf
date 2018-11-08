@@ -1,0 +1,14 @@
+<h1>Add a new book to your shelf</h1>
+<%= form_for @book do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+    <%= f.label :pub_year %>
+    <%= f.number_field :pub_year %>
+    <%= f.label :note %> 
+    <%= f.text_field :note %>
+    <%= f.label :favorite %>
+    <%= f.check_box :favorite %>
+    <%= f.submit 'Add book'%>
+<% end %>
