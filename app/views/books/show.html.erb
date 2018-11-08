@@ -1,0 +1,7 @@
+<h1><%= @book.title %></h1>
+<ul>
+    <li>Author: <%= Author.find(@book.author_id).name %></li>
+    <li>Publication Year: <%= @book.pub_year %></li>
+    <li>Note: <%= @book.note if not nil %></li>
+    <li>Favorite?</li>
+</ul>
