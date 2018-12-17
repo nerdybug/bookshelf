@@ -5,9 +5,10 @@ class BooksController < ApplicationController
     end
 
     def create
+        @user = User.find(session[:user_id])
         @book = Book.create(book_params.except(:author))
         @author = Author.create(name: book_params[:author])
-        @book.update(author_id: @author.id)
+        @book.update(author_id: @author.id, user_id: @user.id)
         redirect_to book_path(@book)
     end
 
