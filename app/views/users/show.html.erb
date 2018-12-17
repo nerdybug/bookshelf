@@ -1,3 +1,14 @@
 <h1>Welcome to your bookshelf, <%= @user.name %></h1>
+<% if @user.books.empty? %>
+    <p>Your shelf is empty :(</p>
+<% else %>
+    <ul>
+    <% @user.books.each do |b| %>
+        <li><%= b.title %></li>
+        <% end %>
+    </ul>
+<% end %>
+<br>
+<%= link_to 'Add a book', new_book_path %>
 <br>
 <%= link_to 'Logout', logout_path %>
