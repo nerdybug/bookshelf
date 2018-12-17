@@ -6,6 +6,11 @@ RSpec.feature "Book management", :type => :feature do
     book = Book.create(user_id: user.id, title: "Interview with the Vampire", author_id: author.id)
 
     scenario "A user creates a book" do
+        visit "/login"
+        fill_in "user[name]", :with => user.name
+        fill_in "user[password]", :with => user.password
+        click_button "Login"
+        
         visit "/books/new"
 
         fill_in "book[title]", :with => "Interview with the Vampire"
