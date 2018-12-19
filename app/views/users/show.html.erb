@@ -4,7 +4,7 @@
 <% else %>
     <ul>
     <% @user.books.each do |b| %>
-        <li><%= link_to "#{b.title}", book_path(b) %></li> 
+        <li><%= link_to "#{b.title}", book_path(b) %> by <%= b.author.name%> <% if b.favorite%>&#9734;<%end%> <% if b.note != nil%>&#9993;<%end%></li> 
         <% end %>
     </ul>
 <% end %>
@@ -12,3 +12,6 @@
 <%= link_to 'Add a book', new_book_path %>
 <br></br>
 <%= link_to 'Logout', logout_path %>
+<br><br>
+<p>&#9734; = <i>this book is a favorite</i></p>
+<p>&#9993; = <i>this book has a note</i></p>
