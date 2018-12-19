@@ -3,5 +3,11 @@
     <li>Author: <%= Author.find(@book.author_id).name %></li>
     <li>Publication Year: <%= @book.pub_year %></li>
     <li>Note: <%= @book.note if not nil %></li>
-    <li>Favorite?</li>
+    <% if @book.favorite %>
+    <li>This book is a favorite.</li>
+    <% end %>
 </ul>
+<br>
+<%= link_to 'Back to Bookshelf', user_path(@user) %>
+<br></br>
+<%= link_to 'Logout', logout_path %>
