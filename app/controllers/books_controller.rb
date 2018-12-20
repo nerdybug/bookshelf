@@ -1,11 +1,13 @@
 class BooksController < ApplicationController
-
+    include UsersHelper
+    before_action :logged_in?
+    
     def new
         @book = Book.new
     end
 
     def create
-        @user = User.find(session[:user_id])
+        current_user
         @book = Book.create(book_params.except(:author))
         @author = Author.create(name: book_params[:author])
         @book.update(author_id: @author.id, user_id: @user.id)
@@ -14,7 +16,7 @@ class BooksController < ApplicationController
 
     def show
         @book = Book.find(params[:id])
-        @user = User.find(session[:user_id])
+        current_user
     end
 
     private
