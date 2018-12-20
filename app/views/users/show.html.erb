@@ -4,7 +4,7 @@
 <% else %>
     <ul>
     <% @user.books.each do |b| %>
-        <li><%= link_to "#{b.title}", book_path(b) %> by <%= b.author.name%> <% if b.favorite%>&#9734;<%end%> <% if b.note != nil%>&#9993;<%end%></li> 
+        <li><%= link_to "#{b.title}", book_path(b) %> by <%= b.author.name%> <% if b.favorite%>&#9734;<%end%> <% if !b.note.empty? %>&#9993;<%end%></li> 
         <% end %>
     </ul>
 <% end %>
