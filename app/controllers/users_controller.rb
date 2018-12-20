@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    include UsersHelper
 
     def new
         @user = User.new
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        current_user
     end
 
     private
