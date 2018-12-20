@@ -10,6 +10,13 @@
   </head>
 
   <body>
+  <div>
+    <% flash.keys.each do |type| %>
+      <div data-alert class="flash">
+        <%= flash[type] %>
+      </div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
