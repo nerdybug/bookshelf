@@ -1,17 +1,22 @@
 class BooksController < ApplicationController
     include UsersHelper
     before_action :logged_in?
-    
+
     def new
         @book = Book.new
     end
 
     def create
         current_user
-        @book = Book.create(book_params.except(:author))
-        @author = Author.create(name: book_params[:author])
-        @book.update(author_id: @author.id, user_id: @user.id)
-        redirect_to book_path(@book)
+        if @user.books.find_by(title: params[:book][:title])
+            flash[:existing_title] = "Looks like you've already added that title. Please try again."
+            redirect_to new_book_path
+        else
+            @book = Book.create(book_params.except(:author))
+            @author = Author.create(name: book_params[:author])
+            @book.update(author_id: @author.id, user_id: @user.id)
+            redirect_to book_path(@book)
+        end
     end
 
     def show
