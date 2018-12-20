@@ -3,10 +3,10 @@
     <li>Author: <%= Author.find(@book.author_id).name %></li>
     <li>Publication Year: <%= @book.pub_year %></li>
     <% if !@book.note.empty? %>
-        <li>Note: <%= @book.note %></li>
+        <li>&#9993; <%= @book.note %></li>
     <% end %>
     <% if @book.favorite %>
-        <li>This is a favorite.</li>
+        <li>&#9734; favorite</li>
     <% end %>
 </ul>
 <br>
