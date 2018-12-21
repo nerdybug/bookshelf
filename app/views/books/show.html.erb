@@ -2,7 +2,7 @@
 <ul>
     <li>Author: <%= Author.find(@book.author_id).name %></li>
     <li>Publication Year: <%= @book.pub_year %></li>
-    <% if !@book.note.empty? %>
+    <% if @book.note != nil || @book.note != "" %>
         <li>&#9993; <%= @book.note %></li>
     <% end %>
     <% if @book.favorite %>
@@ -10,6 +10,8 @@
     <% end %>
 </ul>
 <br>
+<%= link_to 'Edit', edit_book_path(@book) %>
+<br></br>
 <%= link_to 'Back to Bookshelf', user_path(@user) %>
 <br></br>
 <%= link_to 'Logout', logout_path %>
