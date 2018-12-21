@@ -20,13 +20,21 @@ class BooksController < ApplicationController
     end
 
     def show
-        @book = Book.find(params[:id])
+        current_book
         current_user
     end
 
+    def edit
+        current_book
+    end
+    
     private
 
     def book_params
         params.require(:book).permit(:title, :author, :pub_year, :note, :favorite)
+    end
+
+    def current_book
+        @book = Book.find(params[:id])
     end
 end
