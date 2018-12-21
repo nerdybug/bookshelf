@@ -8,14 +8,20 @@ class BooksController < ApplicationController
 
     def create
         current_user
-        if @user.books.find_by(title: params[:book][:title])
+        if @user.books.find_by(title: book_params[:title])
             flash[:existing_title] = "Looks like you've already added that title. Please try again."
             redirect_to new_book_path
         else
             @book = Book.create(book_params.except(:author))
-            @author = Author.create(name: book_params[:author])
-            @book.update(author_id: @author.id, user_id: @user.id)
-            redirect_to book_path(@book)
+            if Author.find_by(name: book_params[:author])
+                @author = Author.find_by(name: book_params[:author])
+                @book.update(author_id: @author.id, user_id: @user.id)
+                redirect_to book_path(@book)
+            else
+                @author = Author.create(name: book_params[:author])
+                @book.update(author_id: @author.id, user_id: @user.id)
+                redirect_to book_path(@book)
+            end
         end
     end
 
