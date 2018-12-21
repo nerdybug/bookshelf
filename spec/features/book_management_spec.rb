@@ -5,12 +5,14 @@ RSpec.feature "Book management", :type => :feature do
     author = Author.create(name: "Anne Rice")
     book = Book.create(user_id: user.id, title: "Interview with the Vampire", author_id: author.id)
 
-    scenario "A user creates a book" do
+    before(:each) do
         visit "/login"
         fill_in "user[name]", :with => user.name
         fill_in "user[password]", :with => user.password
         click_button "Login"
-        
+    end
+
+    scenario "A user creates a book" do      
         visit "/books/new"
 
         fill_in "book[title]", :with => "Interview with the Vampire"
@@ -28,7 +30,7 @@ RSpec.feature "Book management", :type => :feature do
     scenario "A user edits one of their books" do
         visit "/books/#{book.id}/edit"
 
-        fill_in "pub_year", :with => "1976"
+        fill_in "book[pub_year]", :with => "1976"
         click_button "Update"
 
         expect(page).to have_content("1976")
