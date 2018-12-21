@@ -1,0 +1,18 @@
+<h1>Editing <%= @book.title %></h1>
+<%= form_for @book do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %><br>
+    <%= f.label :author %>
+    <%= f.text_field :author, value: Author.find_by(id: @book.author_id).name %><br>
+    <%= f.label :pub_year %>
+    <%= f.number_field :pub_year %><br>
+    <%= f.label :note %> 
+    <%= f.text_field :note %><br>
+    <%= f.label :favorite %>
+    <%= f.check_box :favorite %><br></br>
+    <%= f.submit 'Update'%>
+<% end %>
+<br>
+<%= link_to 'Back to Book', book_path(@book) %>
+<br></br>
+<%= link_to 'Back to Bookshelf', user_path(@user) %>
