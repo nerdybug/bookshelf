@@ -13,15 +13,9 @@ class BooksController < ApplicationController
             redirect_to new_book_path
         else
             @book = Book.create(book_params.except(:author))
-            if Author.find_by(name: book_params[:author])
-                @author = Author.find_by(name: book_params[:author])
-                @book.update(author_id: @author.id, user_id: @user.id)
-                redirect_to book_path(@book)
-            else
-                @author = Author.create(name: book_params[:author])
-                @book.update(author_id: @author.id, user_id: @user.id)
-                redirect_to book_path(@book)
-            end
+            @author = Author.find_or_create_by(name: book_params[:author])
+            @book.update(author_id: @author.id, user_id: @user.id)
+            redirect_to book_path(@book)
         end
     end
 
