@@ -6,11 +6,12 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by(name: params[:session][:name])
-        if @user && user.authenticate(params[:session][:password])
+        @user = User.find_by(name: params[:user][:name])
+        if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
+            flash[:incorrect] = "That password is incorrect. Please try again."
             redirect_to '/login'
         end
     end
