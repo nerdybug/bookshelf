@@ -6,12 +6,13 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.new(user_params)
-        if @user.save
-            session[:user_id] = @user.id
-            redirect_to user_path(@user)
+        if User.find_by(name: user_params[:name])
+            flash[:existing_user] = "That name is taken. Please try again."
+            redirect_to signup_path
         else
-            redirect_to root_path
+            @user = User.create(user_params)
+    		session[:user_id] = @user.id
+            redirect_to user_path(@user)
         end
     end
 
