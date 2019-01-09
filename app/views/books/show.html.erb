@@ -2,7 +2,7 @@
 <ul>
     <li>Author: <%= Author.find(@book.author_id).name %></li>
     <li>Publication Year: <%= @book.pub_year %></li>
-    <% if @book.note != nil || @book.note != "" %>
+    <% if @book.note != "" %>
         <li>&#9993; <%= @book.note %></li>
     <% end %>
     <% if @book.favorite %>
