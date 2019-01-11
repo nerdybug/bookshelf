@@ -7,7 +7,10 @@ class SessionsController < ApplicationController
 
     def create
         @user = User.find_by(name: params[:user][:name])
-        if @user && @user.authenticate(params[:user][:password])
+        if @user == nil
+            flash[:none] = "That name does not exist. Please try again."
+            redirect_to '/login'
+        elsif @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
