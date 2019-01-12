@@ -15,11 +15,11 @@ RSpec.feature "Book management", :type => :feature do
     scenario "A user creates a book" do      
         visit "/books/new"
 
-        fill_in "book[title]", :with => "Interview with the Vampire"
-        fill_in "book[author]", :with => "Anne Rice"
+        fill_in "book[title]", :with => "The Outsider"
+        fill_in "book[author]", :with => "Stephen King"
         click_button "Add book"
 
-        expect(page).to have_content("Interview with the Vampire")
+        expect(page).to have_content("The Outsider")
     end
 
     scenario "A user views one of their books" do
