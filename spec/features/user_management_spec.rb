@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "User management", :type => :feature do
-    user = User.create(name: "test_user", password: "testing123")
+    user = User.create(name: "test_user2", password: "testing234")
 
     scenario "Visitor sees the welcome page" do
         visit root_url
@@ -12,13 +12,13 @@ RSpec.feature "User management", :type => :feature do
     end
 
     scenario "Visitor creates a new user" do
-        visit '/users/new'
+        visit '/signup'
 		
-        fill_in "name", :with => user.name
-        fill_in "password", :with => user.password
-        click_button "Create User"
+        fill_in "user[name]", :with => "test_user1"
+        fill_in "user[password]", :with => "testing123"
+        click_button "Signup"
 
-        expect(page).to have_content("Welcome to your bookshelf, test_user")
+        expect(page).to have_content("Bookshelf of test_user1")
     end
 
     scenario "Visitor sees their home page after logging in" do
