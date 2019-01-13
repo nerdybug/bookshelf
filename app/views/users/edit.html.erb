@@ -8,6 +8,9 @@
     <%= f.submit 'Save'%>
 <% end %>
 <br><br>
+<%= link_to 'Delete Account', user_path(@user), data: {:confirm => 'Are you sure?'}, :method => :delete %>
+
+<br><br>
 <%= link_to 'Back to Account Info', user_path(@user) %>
 <br></br>
 <%= link_to 'Your Bookshelf', shelf_path %>
