@@ -31,7 +31,16 @@ class UsersController < ApplicationController
 
     def update
         current_user
-
+        if !user_params[:password].empty?
+            @user.update(password: user_params[:password])
+            redirect_to user_path(@user)
+        elsif user_params[:name] != @user.name
+            @user.update(name: user_params[:name])
+            redirect_to user_path(@user)
+        else
+            flash[:no_changes] = "You did not make any changes. Please try again."
+            redirect_to edit_user_path(@user)
+        end
     end
 
     private
