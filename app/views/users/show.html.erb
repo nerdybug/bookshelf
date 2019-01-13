@@ -1,17 +1,12 @@
-<h1>Bookshelf of <%= @user.name %></h1>
-<% if @user.books.empty? %>
-    <p>Your shelf is empty :(</p>
-<% else %>
-    <ul>
-    <% @user.books.each do |b| %>
-        <li><%= link_to "#{b.title}", book_path(b) %> by <%= b.author.name%> <% if b.favorite%>&#9734;<%end%> <% if b.note != "" %>&#9993;<%end%></li> 
-        <% end %>
-    </ul>
-<% end %>
+<h1>Account Info for <%= @user.name %></h1>
 <br>
-<%= link_to 'Add a book', new_book_path %>
-<br></br>
-<%= link_to 'Logout', logout_path %>
+<p>Name: <%= @user.name %></p>
+<p>Password: not shown (click edit link below to change)</p>
+<p>Created: <%= @user.created_at %></p>
+<p>Updated: <%= @user.updated_at %></p>
+<br>
+<%= link_to 'Edit', edit_user_path(@user) %>
 <br><br>
-<p>&#9734; = <i>this book is a favorite</i></p>
-<p>&#9993; = <i>this book has a note</i></p>
+<%= link_to 'Back to Bookshelf', shelf_path %>
+<br><br>
+<%= link_to 'Logout', logout_path %>
