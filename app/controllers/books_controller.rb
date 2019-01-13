@@ -38,6 +38,12 @@ class BooksController < ApplicationController
         redirect_to book_path(@book)
     end
 
+    def destroy
+        current_book
+        @book.destroy
+
+        redirect_to shelf_path
+    end
     
     private
 
