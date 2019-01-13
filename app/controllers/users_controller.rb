@@ -43,6 +43,14 @@ class UsersController < ApplicationController
         end
     end
 
+    def destroy
+        current_user
+        @user.destroy
+        session.delete :user_id
+
+        redirect_to root_path
+    end
+
     private
 
     def user_params
