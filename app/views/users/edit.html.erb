@@ -1,0 +1,15 @@
+<h1>Edit Info for <%= @user.name %></h1>
+<br>
+<%= form_for @user do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :password %>
+    <%= f.password_field :password %><br></br>
+    <%= f.submit 'Edit'%>
+<% end %>
+<br><br>
+<%= link_to 'Back to Account Info', user_path(@user) %>
+<br></br>
+<%= link_to 'Your Bookshelf', shelf_path %>
+<br><br>
+<%= link_to 'Logout', logout_path %>
