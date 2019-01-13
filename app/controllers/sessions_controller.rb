@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
             redirect_to '/login'
         elsif @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
-            redirect_to user_path(@user)
+            redirect_to shelf_path
         else
             flash[:incorrect] = "That password is incorrect. Please try again."
             redirect_to '/login'
