@@ -31,7 +31,7 @@ RSpec.feature "Book management", :type => :feature do
         visit "/books/#{book.id}/edit"
 
         fill_in "book[pub_year]", :with => "1976"
-        click_button "Update"
+        click_button "Save"
 
         expect(page).to have_content("1976")
     end
