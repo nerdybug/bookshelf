@@ -13,6 +13,8 @@
     <%= f.submit 'Save'%>
 <% end %>
 <br>
-<%= link_to 'Back to Book', book_path(@book) %>
+<%= link_to 'Delete Book', book_path(@book), data: {:confirm => 'Are you sure?'}, :method => :delete %>
+<br><br>
+<%= link_to 'Back to Book Info', book_path(@book) %>
 <br></br>
 <%= link_to 'Back to Bookshelf', shelf_path %>
