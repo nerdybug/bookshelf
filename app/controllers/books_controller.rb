@@ -28,6 +28,17 @@ class BooksController < ApplicationController
         current_book
     end
     
+    def update
+        current_book
+        @author = Author.find_or_create_by(name: book_params[:author])
+        @book.update(book_params.except(:author))
+        if @book.author_id != @author.id
+            @book.update(author_id: @author.id)
+        end
+        redirect_to book_path(@book)
+    end
+
+    
     private
 
     def book_params
