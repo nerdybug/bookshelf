@@ -37,7 +37,8 @@ RSpec.feature "Book management", :type => :feature do
     end
 
     scenario "A user deletes one of their books" do
-        visit "/books/#{book.id}/delete"
+        visit "/books/#{book.id}/edit"
+        click_link "Delete Book"
         expect(page).not_to have_content(book.title)
     end
 end
