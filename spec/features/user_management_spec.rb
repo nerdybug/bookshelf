@@ -26,7 +26,7 @@ RSpec.feature "User management", :type => :feature do
 
     scenario "User views their info" do
         visit "/users/#{user.id}"
-        expect(page).to have_content("Edit your info")
+        expect(page).to have_content("Account Info for #{user.name}")
     end
 
     scenario "User edits their info" do
