@@ -12,8 +12,8 @@
     <% end %>
 </ul>
 <br>
-<%= link_to 'Edit', edit_book_path(@book) %>
+<%= link_to 'Edit', edit_user_book_path(@user, @book) %>
 <br></br>
-<%= link_to 'Back to Bookshelf', shelf_path %>
+<%= link_to 'Back to Bookshelf', user_books_path(@user) %>
 <br></br>
 <%= link_to 'Logout', logout_path %>
