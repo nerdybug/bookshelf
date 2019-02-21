@@ -1,5 +1,5 @@
 <h1>Editing <%= @book.title %></h1>
-<%= form_for @book do |f| %>
+<%= form_for [@user, @book] do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %><br>
     <%= f.label :author %>
@@ -13,8 +13,8 @@
     <%= f.submit 'Save'%>
 <% end %>
 <br>
-<%= link_to 'Delete Book', book_path(@book), data: {:confirm => 'Are you sure?'}, :method => :delete %>
+<%= link_to 'Delete Book', user_book_path(@user, @book), data: {:confirm => 'Are you sure?'}, :method => :delete %>
 <br><br>
-<%= link_to 'Back to Book Info', book_path(@book) %>
+<%= link_to 'Back to Book Info', user_book_path(@user, @book) %>
 <br></br>
-<%= link_to 'Back to Bookshelf', shelf_path %>
+<%= link_to 'Back to Bookshelf', user_books_path(@user) %>

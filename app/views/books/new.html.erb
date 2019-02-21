@@ -1,5 +1,5 @@
 <h1>Add a new book to your shelf</h1>
-<%= form_for @book do |f| %>
+<%= form_for [@user, @book] do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %><br>
     <%= f.label :author %>
@@ -13,4 +13,4 @@
     <%= f.submit 'Add book'%>
 <% end %>
 <br>
-<%= link_to 'Back to Bookshelf', shelf_path %>
+<%= link_to 'Back to Bookshelf', user_books_path(@user) %>
