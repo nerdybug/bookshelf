@@ -19,6 +19,10 @@ class BooksController < ApplicationController
         end
     end
 
+    def index
+        current_user
+    end
+
     def show
         current_book
         current_user
@@ -35,7 +39,7 @@ class BooksController < ApplicationController
         if @book.author_id != @author.id
             @book.update(author_id: @author.id)
         end
-        redirect_to book_path(@book)
+        redirect_to user_book_path(@user, @book)
     end
 
     def destroy
