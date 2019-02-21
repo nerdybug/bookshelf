@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :users, :books, :authors
+  resources :users do
+    resources :books, :authors
+  end
+  resources :sessions, only: [:new, :create, :destroy]
   root 'welcome#index'
 
   get '/signup', to: 'users#new'
