@@ -1,4 +1,16 @@
 <h1>Add a new book to your shelf</h1>
+<% if @book.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      The following <%= pluralize(@book.errors.count, "error") %> prevented your book from being added:
+    </h2>
+    <ul>
+    <% @book.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= form_for [@user, @book] do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %><br>
