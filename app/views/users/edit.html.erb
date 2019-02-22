@@ -13,6 +13,6 @@
 <br><br>
 <%= link_to 'Back to Account Info', user_path(@user) %>
 <br></br>
-<%= link_to 'Your Bookshelf', shelf_path %>
+<%= link_to 'Your Bookshelf', user_books_path(@user) %>
 <br><br>
 <%= link_to 'Logout', logout_path %>
