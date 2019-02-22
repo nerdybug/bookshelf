@@ -12,17 +12,12 @@ class UsersController < ApplicationController
         else
             @user = User.create(user_params)
     		session[:user_id] = @user.id
-            redirect_to shelf_path
+            redirect_to user_books_path(@user)
         end
     end
 
     def show
         current_user
-    end
-
-    def shelf
-        current_user
-        render :shelf
     end
 
     def edit
