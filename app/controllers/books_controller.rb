@@ -10,12 +10,12 @@ class BooksController < ApplicationController
         current_user
         if @user.books.find_by(title: book_params[:title])
             flash[:existing_title] = "Looks like you've already added that title. Please try again."
-            redirect_to new_book_path
+            redirect_to new_user_book_path(@user)
         else
             @book = Book.create(book_params.except(:author))
             @author = Author.find_or_create_by(name: book_params[:author])
             @book.update(author_id: @author.id, user_id: @user.id)
-            redirect_to book_path(@book)
+            redirect_to user_book_path(@user, @book)
         end
     end
 
@@ -44,9 +44,10 @@ class BooksController < ApplicationController
 
     def destroy
         current_book
+        current_user
         @book.destroy
 
-        redirect_to shelf_path
+        redirect_to user_books_path(@user)
     end
     
     private
