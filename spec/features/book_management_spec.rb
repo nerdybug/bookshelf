@@ -13,7 +13,7 @@ RSpec.feature "Book management", :type => :feature do
     end
 
     scenario "A user creates a book" do      
-        visit "/books/new"
+        visit "/users/#{user.id}/books/new"
 
         fill_in "book[title]", :with => "The Outsider"
         fill_in "book[author]", :with => "Stephen King"
@@ -23,7 +23,7 @@ RSpec.feature "Book management", :type => :feature do
     end
 
     scenario "A user views one of their books" do
-        visit "/books/#{book.id}"
+        visit "/users/#{user.id}/books/#{book.id}"
         expect(page).to have_content(book.title)
     end
 
