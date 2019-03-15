@@ -1,11 +1,8 @@
 <h1>Edit Info for <%= @user.name %></h1>
 <br>
 <%= form_for @user do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %><br>
-    <%= f.label :password %>
-    <%= f.password_field :password %><br></br>
-    <%= f.submit 'Save'%>
+    <% @form = f %>
+    <%= render 'user' %>
 <% end %>
 <br><br>
 <%= link_to 'Delete Account', user_path(@user), data: {:confirm => 'Are you sure?'}, :method => :delete %>

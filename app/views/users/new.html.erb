@@ -1,11 +1,8 @@
 <h1>Singup for your Bookshelf</h1>
 
 <%= form_for @user do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %><br>
-    <%= f.label :password %>
-    <%= f.password_field :password %><br></br>
-    <%= f.submit 'Signup'%>
+    <% @form = f %>
+    <%= render 'user' %>
 <% end %>
 <br>
 <%= link_to 'Back', root_path %>
