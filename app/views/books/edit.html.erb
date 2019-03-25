@@ -3,7 +3,7 @@
     <%= f.label :title %>
     <%= f.text_field :title %><br>
     <%= f.label :author %>
-    <%= f.text_field :author, value: Author.find_by(id: @book.author_id).name %><br>
+    <%= f.text_field :author, value: @book.author.name %><br>
     <%= f.label :pub_year %>
     <%= f.number_field :pub_year %><br>
     <%= f.label :note %> 

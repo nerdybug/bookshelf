@@ -1,7 +1,7 @@
 <h1>Viewing <%= @book.title %></h1>
 <ul>
     <li>Title: <%= @book.title %></li>
-    <li>Author: <%= Author.find(@book.author_id).name %></li>
+    <li>Author: <%= @book.author.name %></li>
     <% if !@book.pub_year.nil? %>
     <li>Publication Year: <%= @book.pub_year %></li>
     <% end %>
