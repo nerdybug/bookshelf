@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature "User management", :type => :feature do
-    user = User.create(name: "test_user2", password: "testing234")
 
     scenario "Visitor sees the welcome page" do
         visit root_url
