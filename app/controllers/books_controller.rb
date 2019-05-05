@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-    include UsersHelper
     before_action :logged_in?
 
     def new
