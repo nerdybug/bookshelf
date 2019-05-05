@@ -5,11 +5,11 @@
     <%= render 'user' %>
 <% end %>
 <br><br>
-<%= link_to 'Delete Account', user_path(@user), data: {:confirm => 'Are you sure?'}, :method => :delete %>
+<%= link_to 'Delete Account', user_path(@user), :method => :delete %>
 
 <br><br>
 <%= link_to 'Back to Account Info', user_path(@user) %>
-<br></br>
+<br><br>
 <%= link_to 'Your Bookshelf', user_books_path(@user) %>
 <br><br>
 <%= link_to 'Logout', logout_path %>
