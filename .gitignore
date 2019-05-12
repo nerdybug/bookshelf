@@ -31,3 +31,6 @@ Gemfile.lock
 .byebug_history
 
 .vscode/settings.json
+
+#Ignore .env file
+/.env
