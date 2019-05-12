@@ -25,7 +25,6 @@ class SessionsController < ApplicationController
 
     def omniauth_login_or_create(auth)
         @user = User.find_or_create_with_omniauth(auth)
-        #binding.pry
         session[:user_id] = @user.id
         redirect_to user_books_path(@user)
     end

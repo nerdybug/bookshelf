@@ -6,7 +6,6 @@ class User < ApplicationRecord
     validates_presence_of :password, :if => :should_have_password?
 
     def self.find_or_create_with_omniauth(auth)
-        binding.pry
         auth_name = auth["extra"]["raw_info"]["login"]
         user = User.find_by(name: auth_name)
 
