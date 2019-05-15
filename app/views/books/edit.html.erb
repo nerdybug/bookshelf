@@ -9,12 +9,12 @@
     <%= f.label :note %> 
     <%= f.text_field :note %><br>
     <%= f.label :favorite %>
-    <%= f.check_box :favorite %><br></br>
+    <%= f.check_box :favorite %><br><br>
     <%= f.submit 'Save'%>
 <% end %>
 <br>
 <%= link_to 'Delete Book', user_book_path(@user, @book), :method => :delete %>
 <br><br>
 <%= link_to 'Back to Book Info', user_book_path(@user, @book) %>
-<br></br>
+<br><br>
 <%= link_to 'Back to Bookshelf', user_books_path(@user) %>
