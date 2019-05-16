@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    include ApplicationHelper
     has_secure_password validations: false
     has_many :books
     has_many :authors, through: :books
@@ -18,6 +19,5 @@ class User < ApplicationRecord
 
     def should_have_password?
         provider.to_s.strip.empty?
-    end
-    
+    end 
 end
