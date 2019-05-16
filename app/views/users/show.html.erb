@@ -1,9 +1,9 @@
-<h1>Account Info for <%= @user.name %></h1>
+<h1>Account Info for <i><%= @user.name %></i></h1>
 <br>
 <p>Name: <%= @user.name %></p>
 <p>Password: not shown (click edit link below to change)</p>
-<p>Created: <%= @user.created_at %></p>
-<p>Updated: <%= @user.updated_at %></p>
+<p>Created on <%= @user.date_display(@user, "created") %> at <%= @user.time_display(@user, "created")  %></p>
+<p>Updated on <%= @user.date_display(@user, "updated") %> at <%= @user.time_display(@user, "updated")  %></p>
 <br>
 <%= link_to 'Edit', edit_user_path(@user) %>
 <br><br>
