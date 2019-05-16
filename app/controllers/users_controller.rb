@@ -5,28 +5,14 @@ class UsersController < ApplicationController
     end
 
     def create
-
-        if user_params[:name].strip.empty? || user_params[:password].empty?
-            flash[:invalid_params] = "Name and password are required. Please try again."
-            redirect_to signup_path
-            return
-        end
-
-        if User.find_by(name: user_params[:name])
-            flash[:existing_user] = "That name is taken. Please try again."
-            redirect_to signup_path
-            return
-        end
-
         @user = User.create(user_params)
-        if @user.id == nil
-            flash[:unable_to_create_user] = "Unable to create your user. Name and password are required. Please try again."
-            redirect_to signup_path
-            return
-        end
-
-        session[:user_id] = @user.id
-        redirect_to user_books_path(@user)
+        
+        if !@user.errors.empty?
+            render :action => 'new'
+          else
+            session[:user_id] = @user.id
+            redirect_to user_books_path(@user)
+          end
     end
 
     def show
