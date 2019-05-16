@@ -11,6 +11,18 @@
     </ul>
   </div>
 <% end %>
+<% if @author.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      The following <%= pluralize(@author.errors.count, "error") %> prevented your author from being updated:
+    </h2>
+    <ul>
+    <% @author.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= form_for [@user, @book] do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %><br>

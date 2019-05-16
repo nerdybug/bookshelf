@@ -1,3 +1,4 @@
+
 class BooksController < ApplicationController
     before_action :logged_in?
 
@@ -28,16 +29,21 @@ class BooksController < ApplicationController
 
     def edit
         current_book
+        @author = current_book.author
     end
     
     def update
         current_book
         @author = Author.find_or_create_by(name: book_params[:author])
         @book.update(book_params.except(:author))
-        if @book.author_id != @author.id
+
+        if !@book.errors.empty? || !@author.errors.empty?
+            render :action => 'edit'
+        elsif @book.author_id != @author.id
             @book.update(author_id: @author.id)
+        else
+            redirect_to user_book_path(@user, @book)
         end
-        redirect_to user_book_path(@user, @book)
     end
 
     def destroy
