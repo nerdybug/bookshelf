@@ -25,29 +25,18 @@ class UsersController < ApplicationController
 
     def update
         current_user
-        if params[:user][:name] == @user.name && !params[:user][:password].present?
+        if user_params[:name] == @user.name && @user.authenticate(user_params[:password]) 
             flash[:no_changes] = "You did not make any changes. Please try again."
             redirect_to edit_user_path(@user)
+            return
         end
-        if !params[:user][:password].empty?
-            if !params[:user][:password] == @user.password
-                @user.update(password: params[:user][:password])
-                @user.save
-                flash[:password_updated] = "Your new password has been saved."
-                # this is broken
-            else
-                flash[:same_password] = "The password you entered is your current password. Please try again"
-                redirect_to edit_user_path(@user)
-            end
-        elsif params[:user][:name] != @user.name
-            @user.update(name: params[:user][:name])
-            @user.save
-            flash[:name_updated] = "Your new user name has been saved. #{@user.name}"
-            render 'show' #redirect_to user_path(@user)
-            # this shows the right name but doesnt carry back to home page
-            # reloading the page reverts to the old user name
+        @user.update(user_params)
+        if !@user.errors.empty?
+            current_user
+            render :action => 'edit'
+        else
+            redirect_to user_path(@user)
         end
-        
     end
 
     def destroy
