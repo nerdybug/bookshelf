@@ -1,17 +1,17 @@
-<h1>Viewing <%= @book.title %></h1>
-<ul>
-    <li>Title: <%= @book.title %></li>
-    <li>Author: <%= @book.author.name %></li>
+<h1>Viewing <i><%= @book.title %></i></h1>
+    <p>Title: <%= @book.title %></p>
+    <p>Author: <%= @book.author.name %></p>
     <% if !@book.pub_year.nil? %>
-    <li>Publication Year: <%= @book.pub_year %></li>
+    <p>Publication Year: <%= @book.pub_year %></p>
     <% end %>
     <% if @book.note != "" %>
-        <li>&#9993; <%= @book.note %></li>
+        <p>&#9993; : <%= @book.note %></p>
     <% end %>
     <% if @book.favorite %>
-        <li>&#9734; favorite</li>
+        <p>&#9734; : this book is a favorite</p>
     <% end %>
-</ul>
+    <p>Created on <%= @book.date_display(@book, "created") %> at <%= @book.time_display(@book, "created")  %></p>
+    <p>Updated on <%= @book.date_display(@book, "updated") %> at <%= @book.time_display(@book, "updated")  %></p>
 <br>
 <%= link_to 'Edit', edit_user_book_path(@user, @book) %>
 <br><br>
