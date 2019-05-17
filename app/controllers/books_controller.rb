@@ -1,13 +1,13 @@
 
 class BooksController < ApplicationController
     before_action :logged_in?
-
+    before_action :current_book, only: [:show, :edit, :update, :destroy]
+    
     def new
         @book = Book.new
     end
 
     def create
-        current_user
         @book = Book.create(book_params.except(:author))
         @author = Author.find_or_create_by(name: book_params[:author])
         @book.update(author_id: @author.id, user_id: @user.id)
@@ -19,21 +19,16 @@ class BooksController < ApplicationController
     end
 
     def index
-        current_user
     end
 
     def show
-        current_book
-        current_user
     end
 
     def edit
-        current_book
-        @author = current_book.author
+        @author = @book.author
     end
     
     def update
-        current_book
         @author = Author.find_or_create_by(name: book_params[:author])
         @book.update(book_params.except(:author))
 
@@ -53,10 +48,7 @@ class BooksController < ApplicationController
     end
 
     def destroy
-        current_book
-        current_user
         @book.destroy
-
         redirect_to user_books_path(@user)
     end
     
