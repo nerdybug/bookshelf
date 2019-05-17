@@ -10,6 +10,7 @@
   </head>
 
   <body>
+  <%= yield :form_errors %>
   <div>
     <% flash.keys.each do |type| %>
       <div data-alert class="flash">
