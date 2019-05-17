@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :logged_in?, except: [:new, :create]
 
     def new
         @user = User.new
@@ -6,7 +7,6 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-        
         if !@user.errors.empty?
             render :action => 'new'
           else
@@ -16,23 +16,19 @@ class UsersController < ApplicationController
     end
 
     def show
-        current_user
     end
 
     def edit
-        current_user
     end
 
     def update
-        current_user
         if user_params[:name] == @user.name && @user.authenticate(user_params[:password]) 
             flash[:no_changes] = "You did not make any changes. Please try again."
             redirect_to edit_user_path(@user)
             return
         end
         @user.update(user_params)
-        if !@user.errors.empty?
-            current_user
+        if !@user.errors.empty?  
             render :action => 'edit'
         else
             redirect_to user_path(@user)
@@ -40,10 +36,8 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        current_user
         @user.destroy
         session.delete :user_id
-
         redirect_to root_path
     end
 
