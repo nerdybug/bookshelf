@@ -1,0 +1,13 @@
+<div>
+    <%= @form.label :title %>
+    <%= @form.text_field :title %><br>
+    <%= @form.label :author %>
+    <%= @form.text_field :author, :value => book ? book.author.name : "" %><br>
+    <%= @form.label :pub_year %>
+    <%= @form.number_field :pub_year %><br>
+    <%= @form.label :note %> 
+    <%= @form.text_field :note %><br>
+    <%= @form.label :favorite %>
+    <%= @form.check_box :favorite %><br><br>
+    <%= @form.submit %>
+</div>
