@@ -41,9 +41,15 @@ class BooksController < ApplicationController
             render :action => 'edit'
         elsif @book.author_id != @author.id
             @book.update(author_id: @author.id)
+            redirect_to user_book_path(@user, @book)
         else
             redirect_to user_book_path(@user, @book)
         end
+    end
+
+    def most_recent_book
+        @book = current_user.most_recent_book
+        render :action => 'show'
     end
 
     def destroy
@@ -60,7 +66,5 @@ class BooksController < ApplicationController
         params.require(:book).permit(:title, :author, :pub_year, :note, :favorite)
     end
 
-    def current_book
-        @book = Book.find(params[:id])
-    end
+
 end

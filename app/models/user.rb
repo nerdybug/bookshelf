@@ -20,4 +20,8 @@ class User < ApplicationRecord
     def should_have_password?
         provider.to_s.strip.empty?
     end 
+
+    def most_recent_book
+        self.books.last
+    end
 end

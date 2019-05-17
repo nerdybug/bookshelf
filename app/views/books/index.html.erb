@@ -11,6 +11,8 @@
 <br>
 <%= link_to 'Add a book', new_user_book_path(@user) %>
 <br><br>
+<%= link_to 'Most recently added book', "/users/#{@user.id}/most_recent_book" %>
+<br><br>
 <%= link_to 'Account Info', user_path(@user) %>
 <br><br>
 <%= link_to 'Logout', logout_path %>
