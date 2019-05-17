@@ -31,7 +31,7 @@ RSpec.feature "Book management", :type => :feature do
 
             fill_in "book[title]", :with => "The Outsider"
             fill_in "book[author]", :with => "Stephen King"
-            click_button "Add book"
+            click_button "Create Book"
 
             expect(page).to have_content("The Outsider")
         end
@@ -45,7 +45,7 @@ RSpec.feature "Book management", :type => :feature do
             visit "/users/#{@user.id}/books/#{@book.id}/edit"
 
             fill_in "book[pub_year]", :with => "1976"
-            click_button "Save"
+            click_button "Update Book"
 
             expect(page).to have_content("1976")
         end
